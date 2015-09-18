@@ -16,16 +16,20 @@
         <h:body>
 
             <h:form>
+                <h:outputText value="Capacite de la salle : " />
+                <h:outputText id="output2" value="#{vendeur.nbPlace}" />
+                <br/>
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputText value="Nombre de places : " />
                     <h:outputText id="output" value="#{vendeur.number}" />
-                </h:panelGrid>
-                
+                </h:panelGrid>                
                 <p:commandButton value="moins" actionListener="#{vendeur.decrement}" update="output" />
                 <p:commandButton value="plus" actionListener="#{vendeur.increment}" update="output" />
+                <br/>
+                <br/>
+                <p:button value="retour" outcome="vendeurFilm" />
             </h:form>
         </h:body>
-
     </f:view>
 </html>
 
