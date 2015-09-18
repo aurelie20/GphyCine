@@ -17,14 +17,35 @@
 
             <h:form>
                 <h:outputText value="Capacite de la salle : " />
-                <h:outputText id="output2" value="#{vendeur.nbPlace}" />
+                <h:outputText id="output4" value="#{vendeur.nbPlace}" />
                 <br/>
                 <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Nombre de places : " />
+                    <h:outputText value="Nombre de places (normal): " />
                     <h:outputText id="output" value="#{vendeur.number}" />
                 </h:panelGrid>                
                 <p:commandButton value="moins" actionListener="#{vendeur.decrement}" update="output" />
                 <p:commandButton value="plus" actionListener="#{vendeur.increment}" update="output" />
+                <br/>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Nombre de places (Etudiant) : " />
+                    <h:outputText id="output2" value="#{vendeur.number2}" />
+                </h:panelGrid>                
+                <p:commandButton value="moins" actionListener="#{vendeur.decrement2}" update="output2" />
+                <p:commandButton value="plus" actionListener="#{vendeur.increment2}" update="output2" />
+                <br/>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Nombre de places (-16 ans): " />
+                    <h:outputText id="output3" value="#{vendeur.number3}" />
+                </h:panelGrid>                
+                <p:commandButton value="moins" actionListener="#{vendeur.decrement3}" update="output3" />
+                <p:commandButton value="plus" actionListener="#{vendeur.increment3}" update="output3" />
+                <br/>
+                <br/>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Montant total : " />
+                    <h:outputText id="outputPrix" value="#{vendeur.prix}" />
+                </h:panelGrid>                
+                <p:commandButton value="Valider" actionListener="#{vendeur.prixTotal}" update="outputPrix" />
                 <br/>
                 <br/>
                 <p:button value="retour" outcome="vendeurFilm" />
