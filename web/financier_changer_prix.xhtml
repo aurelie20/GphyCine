@@ -10,76 +10,80 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <f:view contentType="text/html">
-    <h:head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
-        <h:form>
-    <p:growl id="messages" showDetail="true"/>
- 
-    <p:slideMenu style="width:250px">
-        <p:submenu label="Recettes" icon="ui-icon-refresh">
-            <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
-            <p:menuitem value="Recette par film" outcome="financier_recette_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
-            <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
-        </p:submenu>
-        <p:separator />
-        <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
-            <p:menuitem value="Changer les prix" outcome="financier_changer_prix" update="messages" icon="ui-icon-suitcase" />
-        </p:submenu>
-    </p:slideMenu>
- 
-    </h:form>
-    </h:body>
-                <h:head>
+        <h:head>
+            <title>TODO supply a title</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        </h:head>
+        <h:body>
+            <h:form>
+                <p:growl id="messages" showDetail="true"/>
+
+                <p:slideMenu style="width:250px">
+                    <p:submenu label="Recettes" icon="ui-icon-refresh">
+                        <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette par film" outcome="financier_recette_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
+                        <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                    </p:submenu>
+                    <p:separator />
+                    <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
+                        <p:menuitem value="Changer les prix" outcome="financier_changer_prix" update="messages" icon="ui-icon-suitcase" />
+                    </p:submenu>
+                </p:slideMenu>
+
+            </h:form>
+        </h:body>
+        <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>Recherchez</title>
             </f:facet>
         </h:head>
 
- <h:form>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Billet prix sans reductions :  " />
-                    <h:outputText id="output" value="#{financier.number}" />
-                </h:panelGrid>
-                
-                <p:commandButton value="moins" actionListener="#{financier.decrement}" update="output" />
-                <p:commandButton value="plus" actionListener="#{financier.increment}" update="output" />
-                <br/>
-                <p:commandButton value="sauvegarder"  update="output" />
-            </h:form>
-        <br/>
-         <h:form>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Billet prix sans reductions :  " />
-                    <h:outputText id="output" value="#{financier.number}" />
-                </h:panelGrid>
-                
-                <p:commandButton value="moins" actionListener="#{financier.decrement}" update="output" />
-                <p:commandButton value="plus" actionListener="#{financier.increment}" update="output" />
-                <br/>
-                <p:commandButton value="sauvegarder"  update="output" />
-            </h:form>
-        <br/>
-         <h:form>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Billet prix sans reductions :  " />
-                    <h:outputText id="output" value="#{financier.montant_norm}" />
-                </h:panelGrid>
-                
-                <p:commandButton value="moins" actionListener="#{financier.decrement}" update="output" />
-                <p:commandButton value="plus" actionListener="#{financier.increment}" update="output" />
-                <br/>
-                <p:commandButton value="sauvegarder"  update="output" />
-                <br/>
-                <br/>
-                <h:outputText id="output3" value="test : " />
-                <h:outputText id="output2" value="#{financier.return_prix_norm()}" />
-            </h:form>
-        
-   </f:view>
+        <h:form>
+            <table>
+                <tr>
+                    <td>Tarif</td>
+                    <td>Valeur actuelle</td>*
+                    <td>Baisser/Aumenter le prix de</td>
+                    <td>Sauvegarder</td>
+                </tr>
+                <tr>
+                    <td>Normal</td>
+                    <td> <h:outputText value="#{financier.montant_norm} €" /> </td>
+                    <td> 
+                        <h:outputText id="output5" value="#{financier.number}"/>
+
+                        <p:commandButton value="moins" actionListener="#{financier.decrement_norm}" update="output5" />
+                        <p:commandButton value="plus" actionListener="#{financier.increment_norm}" update="output5" /> 
+                    </td>
+                    <td>  <p:commandButton value="sauvegarder"  update="output5" /> </td>
+                </tr>
+                <tr>
+                    <td>Etudiant</td>
+                    <td> <h:outputText value="#{financier.montant_etu} €" /> </td>
+                    <td> 
+                        <h:outputText id="output6" value="#{financier.number2}"/>
+
+                        <p:commandButton value="moins" actionListener="#{financier.decrement_etu}" update="output6" />
+                        <p:commandButton value="plus" actionListener="#{financier.increment_etu}" update="output6" /> 
+                    </td>
+                    <td>  <p:commandButton value="sauvegarder"  update="output6" /> </td>
+                </tr>
+                <tr>
+                    <td>-16 ans</td>
+                    <td> <h:outputText value="#{financier.montant_enf} €" /> </td>
+                    <td> 
+                        <h:outputText id="output7" value="#{financier.number3}"/>
+
+                        <p:commandButton value="moins" actionListener="#{financier.decrement_enf}" update="output7" />
+                        <p:commandButton value="plus" actionListener="#{financier.increment_enf}" update="output7" /> 
+                    </td>
+                    <td>  <p:commandButton value="sauvegarder"  actionListener="#{financier.setMontant_norm(number)}" update="output7" /> </td>
+                </tr>
+
+            </table>
+        </h:form>
+    </f:view>
 </html>
