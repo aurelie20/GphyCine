@@ -14,41 +14,70 @@
         </h:head>
 
         <h:body>
+            <h:outputStylesheet name="style.css"  />   
 
-            <h:form>
-                <h:outputText value="Capacite de la salle : " />
+            <h:form class="formVendeur">                
+                <h:outputText value="#{vendeur.choixFilm}" class="film"/>                
+                <br/>
+                <h:outputText value="Capacité de la salle : " />
                 <h:outputText id="output4" value="#{vendeur.nbPlace}" />
-                <br/>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Nombre de places (normal): " />
-                    <h:outputText id="output" value="#{vendeur.number}" />
-                </h:panelGrid>                
-                <p:commandButton value="moins" actionListener="#{vendeur.decrement}" update="output" />
-                <p:commandButton value="plus" actionListener="#{vendeur.increment}" update="output" />
-                <br/>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Nombre de places (Etudiant) : " />
-                    <h:outputText id="output2" value="#{vendeur.number2}" />
-                </h:panelGrid>                
-                <p:commandButton value="moins" actionListener="#{vendeur.decrement2}" update="output2" />
-                <p:commandButton value="plus" actionListener="#{vendeur.increment2}" update="output2" />
-                <br/>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Nombre de places (-16 ans): " />
-                    <h:outputText id="output3" value="#{vendeur.number3}" />
-                </h:panelGrid>                
-                <p:commandButton value="moins" actionListener="#{vendeur.decrement3}" update="output3" />
-                <p:commandButton value="plus" actionListener="#{vendeur.increment3}" update="output3" />
-                <br/>
-                <br/>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Montant total : " />
-                    <h:outputText id="outputPrix" value="#{vendeur.prix}" />
-                </h:panelGrid>                
-                <p:commandButton value="Valider" actionListener="#{vendeur.prixTotal}" update="outputPrix" />
-                <br/>
-                <br/>
-                <p:button value="retour" outcome="vendeurFilm" />
+
+                <h:panelGrid columns="3" cellpadding="40" class="formVendeur">
+                    <p:graphicImage url="#{vendeur.afficheF}" width="250" height="350" alt="affiche"/>
+                    
+                    <h:panelGrid columns="1" cellpadding="5" class="formVendeur">
+                        <h:panelGrid columns="2" cellpadding="5" class="formVendeur">
+                            <h:outputText value="Nombre de places (normal): " />
+                            <h:outputText id="output" value="#{vendeur.number}" class="nb"/>
+                        </h:panelGrid>   
+                        <h:panelGrid columns="2" cellpadding="5" class="formVendeur">
+                            <p:commandButton value="moins" actionListener="#{vendeur.decrement}" update="output" />
+                            <p:commandButton value="plus" actionListener="#{vendeur.increment}" update="output" />
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" cellpadding="5" class="formVendeur">
+                            <h:outputText value="Nombre de places (Etudiant) : " />
+                            <h:outputText id="output2" value="#{vendeur.number2}" class="nb"/>
+                        </h:panelGrid>               
+                        <h:panelGrid columns="2" cellpadding="5" class="formVendeur">
+                            <p:commandButton value="moins" actionListener="#{vendeur.decrement2}" update="output2" />
+                            <p:commandButton value="plus" actionListener="#{vendeur.increment2}" update="output2" />
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" cellpadding="5" class="formVendeur">
+                            <h:outputText value="Nombre de places (-16 ans): " />
+                            <h:outputText id="output3" value="#{vendeur.number3}" class="nb"/>
+                        </h:panelGrid>   
+                        <h:panelGrid columns="2" cellpadding="5" class="formVendeur">
+                            <p:commandButton value="moins" actionListener="#{vendeur.decrement3}" update="output3" />
+                            <p:commandButton value="plus" actionListener="#{vendeur.increment3}" update="output3" />
+                        </h:panelGrid>
+                    </h:panelGrid>
+
+
+                    <h:panelGrid columns="1" cellpadding="5" class="formVendeur">
+                        <h:panelGrid columns="2" cellpadding="5" class="formVendeur">
+                            <h:outputText value="Montant total : " />
+                            <h:outputText id="outputPrix" value="#{vendeur.prix}" class="montant" />
+                        </h:panelGrid>                
+                        <p:commandButton value="Calculer le montant total" actionListener="#{vendeur.prixTotal}" update="outputPrix"/>
+                    </h:panelGrid>
+                   
+                </h:panelGrid>
+
+                <h:panelGrid columns="3" cellpadding="10" class="formVendeur">
+                    <p:commandButton value="Retour" action="vendeurFilm?faces-redirect=true" ajax="false"/>
+
+                    <p:commandButton value="Valider" actionListener="#{vendeur.insertRecette}">
+                        <p:confirm header="Confirmation" message="Voulez-vous valider cette vente ?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Oui" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"  action="vendeurFilm?faces-redirect=true"/>
+                        <p:commandButton value="Non" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>                   
+                </h:panelGrid>
+
+                <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo2"/>
             </h:form>
         </h:body>
     </f:view>

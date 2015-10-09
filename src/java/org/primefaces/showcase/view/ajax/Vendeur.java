@@ -19,7 +19,6 @@ package org.primefaces.showcase.view.ajax;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,22 +26,46 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class Vendeur implements Serializable {
 
-    private int number;
-    private int number2;
-    private int number3;
-    private int nbPlace;
+    private int number; //Nb de place tarif normal
+    private int number2; //Nb de place tarif étudiant
+    private int number3; //Nb de place tarif -16
+    private int nbPlace; // Capacité de la salle
 
     private float prix = (float) 0.0;
-    private float prixN;
-    private float prixE;
-    private float prix16;
+    private float prixN; // Tarif normal
+    private float prixE; // Tarif Etudiant
+    private float prix16; // Tarif -16 ans
+    
+    private ArrayList<String> titreF = null; //Liste des films à l'affiche
+    private String choixFilm; // Titre du film selectionne dans la liste
+    private int idFilm; // id du film selectionne dans la liste
+    private String afficheF; // Affiche du film (image)
+    private ArrayList<String> imageList = null;
 
-    private ArrayList<String> titreF = null;
+    public String test(){
+        return "vendeurFilm";
+    }
+    public String getChoixFilm() {
+        return choixFilm;
+    }
+
+    public void setChoixFilm(String choixFilm) {
+        this.choixFilm = choixFilm;
+    }
+
+    public int getIdFilm() {
+        return idFilm;
+    }
+
+    public void setIdFilm(int idFilm) {
+        this.idFilm = idFilm;
+    }
 
     public int getNumber() {
         return number;
@@ -127,7 +150,7 @@ public class Vendeur implements Serializable {
 
             //Connexion reussie
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT nb_place FROM salle where id_salle=1");
+            rs = stmt.executeQuery("select min(date_heure), nb_place from planning inner join salle on planning.id_salle=salle.id_salle where date_heure>=now()and id_film in (select id_film from film where titre='"+choixFilm+"')");
 
             System.out.println("OK");
 
@@ -186,14 +209,63 @@ public class Vendeur implements Serializable {
 
             //Connexion reussie
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT titre FROM film where date_sortie!=CURDATE()");
+            rs = stmt.executeQuery("SELECT titre, id_film FROM film where en_exploitation=1");
 
             System.out.println("OK");
             titreF = new ArrayList<String>();
             while (rs.next()) {
                 //ArrayList<String> titreFilm = new ArrayList<String>();
                 titreF.add(rs.getString("titre"));
-                //titreF = titreFilm;
+                idFilm = rs.getInt("id_film");
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException:" + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException sqlEx) {
+                    //ignore
+                    System.out.println("pas de rep");
+                }
+                rs = null;
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                    System.out.println("pas de stmt");
+                }
+                stmt = null;
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                    System.out.println("pas de conn");
+                }
+                conn = null;
+            }
+        }
+    }
+    
+    public void AfficheImg() throws ClassNotFoundException {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/gphy_cine", "root", "");
+
+            //Connexion reussie
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT image FROM film where en_exploitation=1");
+
+            System.out.println("OK");
+            imageList = new ArrayList<String>();
+            while (rs.next()) {
+                imageList.add(rs.getString("image"));
             }
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
@@ -417,4 +489,103 @@ public class Vendeur implements Serializable {
         this.prix = prix;
     }
     
+    public void insertRecette () throws ClassNotFoundException{
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/gphy_cine", "root", "");
+            
+            //Connexion reussie
+            stmt = conn.createStatement();
+            stmt.executeUpdate("insert into recette values (1"+","+idFilm+","+number2+","+number+","+number3+","+prix+")");
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException:" + ex.getMessage());
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                    System.out.println("pas de stmt");
+                }
+                stmt = null;
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                    System.out.println("pas de conn");
+                }
+                conn = null;
+            }
+        }
+        
+        number=0;
+        number2=0;
+        number3=0;
+    }
+        
+    public void AfficheFilm() throws ClassNotFoundException {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/gphy_cine", "root", "");
+
+            //Connexion reussie
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT image FROM film where titre='"+choixFilm+"'");
+
+            System.out.println("OK film");
+            while (rs.next()) {
+                afficheF = rs.getString("image");
+            }
+            System.out.println("film"+afficheF);
+        } catch (SQLException ex) {
+            System.out.println("SQLException:" + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException sqlEx) {
+                    //ignore
+                    System.out.println("pas de rep");
+                }
+                rs = null;
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                    System.out.println("pas de stmt");
+                }
+                stmt = null;
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                    System.out.println("pas de conn");
+                }
+                conn = null;
+            }
+        }     
+    }
+
+    public String getAfficheF() {
+        return afficheF;
+    }
+
+    public void setAfficheF(String afficheF) {
+        this.afficheF = afficheF;
+    }
+    
+    public void init() throws ClassNotFoundException{
+        capaciteSalle();
+        AfficheFilm();
+    }
 }
