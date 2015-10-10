@@ -10,27 +10,35 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <h:body>
-        <h:form>
-    <p:growl id="messages" showDetail="true"/>
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Recherchez</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form>
+                <p:growl id="message" showDetail="true"/>
+
+                <p:slideMenu style="width:250px">
+                    <p:submenu label="Recettes" icon="ui-icon-refresh">
+                        <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette par film" outcome="financier_recette_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
+                        <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                    </p:submenu>
+                    <p:separator />
+                    <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
+                        <p:menuitem value="Changer les prix" outcome="financier_changer_prix" update="messages" icon="ui-icon-suitcase" />
+                    </p:submenu>
+                </p:slideMenu>
+    
  
-    <p:slideMenu style="width:250px">
-        <p:submenu label="Recettes" icon="ui-icon-refresh">
-            <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
-            <p:menuitem value="Recette par film" outcome="financier_recette_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
-            <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
-        </p:submenu>
-        <p:separator />
-        <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
-            <p:menuitem value="Changer les prix" outcome="financier_changer_prix" update="messages" icon="ui-icon-suitcase" />
-        </p:submenu>
-    </p:slideMenu>
+<p:chart type="bar" model="#{CalculBenefice.horizontalBarModel}" style="height:300px"/>
  
     </h:form>
        
     </h:body>
+    </f:view>
 </html>
