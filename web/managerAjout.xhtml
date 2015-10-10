@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Ajouter planning</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:outputStylesheet name="style.css"  />  
+            <h:form>
+                <p:growl id="msgs" showDetail="true" />
+
+                <p:panel header="Ajouter au planning" style="margin-bottom:10px;">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel for="film" value="Titre du film " />
+                        <p:selectOneMenu id="film" value="#{vendeur.choixFilm}" style="width:150px">
+                            <f:selectItem itemLabel="Titre" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{vendeur.titreF}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="numSalle" value="Numéro de la salle " />
+                        <p:selectOneMenu id="numSalle" value="#{manager.nSalle}" style="width:150px">
+                            <f:selectItem itemLabel="Salle" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{manager.nbSalle}" />
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+
+                    <p:separator />
+
+                <!--<p:commandButton value="Submit" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />-->
+                </p:panel>
+                <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo2"/>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
