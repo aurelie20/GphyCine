@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 9 oct. 2015, 14:29:00
+    Author     : Lilie
+*/
+
+body{
+    width: auto; 
+    background:url(image/fond2.png);
+}
+
+.formVendeur{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body .p{
+    text-align: center;
+    
+}
+
+.logo
+{
+    margin-left: 80%; 
+    margin-top: 25%;
+}
+
+.logo2
+{
+    margin-left: 80%; 
+
+}
+
+.film{
+    text-align: center;
+    font-size: 60px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.montant{
+    font-size: 40px;
+}
+
+.nb{
+    font-size: 30px;
+}
+
+.deconnexion{
+    margin-left: 5%;
+}

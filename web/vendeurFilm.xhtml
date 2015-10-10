@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <f:view contentType="text/html">
+
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
@@ -14,18 +15,23 @@
         </h:head>
 
         <h:body>
-            <h:form>
-                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="value">
-                    <p:outputLabel for="film" value="Films a l'affiche" />
-                    <p:selectOneListbox id="film" value="#{vendeur.titreF}" var="t">
-                       <f:selectItems value="#{vendeur.titreF}" var="titre"  itemValue="#{titre}" />
+            <h:outputStylesheet name="style.css"  />
+            <h:form class="formVendeur">
+                <br/>
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="value" class="formVendeur">
+                    <p:outputLabel for="film" value="Films a l'affiche" class="film"/>
+                    <br/>
+                    <p:selectOneListbox id="film" value="#{vendeur.choixFilm}" var="titre" class="formVendeur">
+                        <f:selectItems value="#{vendeur.titreF}" var="titre" itemValue="#{titre}" />
                         <p:column>
-                            <h:outputText value="#{t}" />
+                            <h:outputText value="#{titre}" />
                         </p:column>
-                    </p:selectOneListbox>
+                    </p:selectOneListbox>           
                 </h:panelGrid>
-                <p:button value="valider" outcome="vendeur" />
+                <p:commandButton value="Valider" action="vendeur?faces-redirect=true" actionListener="#{vendeur.init}" ajax="false"/>                      
+                <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo"/>
             </h:form>
+            <p:link value="Déconnexion" outcome="index" class="deconnexion"/>
         </h:body>
     </f:view>
 </html>
