@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Recherchez</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form>
+                <p:growl id="message" showDetail="true"/>
+
+                <p:slideMenu style="width:250px">
+                    <p:submenu label="Film management" icon="ui-icon-refresh">
+                        <p:menuitem value="Ajouter un film" outcome="Admin_ajout_film" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Modifier un film" outcome="Admin_modif_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
+                    </p:submenu>
+                    <p:separator />
+                    <p:submenu label="Voir les ventes" icon="ui-icon-newwin"> 
+                        <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette par film" outcome="financier_recette_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
+                        <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                    </p:submenu>
+                </p:slideMenu>
+                <h:outputLabel for="Titre" value="Titre:" />
+                <p:inputText id="Titre"/>
+                <br/>
+                <h:outputLabel for="Genre" value="Genre:"/>
+                <p:inputText id="Genre"/>
+                <br/>
+                <h:outputLabel for="Duree" value="Durée:" />
+                <p:inputText id="Duree"/>
+                <br/>
+                <p:outputLabel for="Sortie" value="Date de sortie:" />
+                <p:calendar id="Sortie" value="#{admin_ajout.date}" showOn="button" />
+                <br/>
+                <h:outputLabel for="Prix" value="Prix d'achat:" />
+                <p:inputText id="Prix"/>
+                <br/>
+                <h:outputLabel for="ajoutimage" value="Ajouter une image:" />
+                <p:fileUpload value="#{admin_ajout.file}" mode="simple" skinSimple="true" id="ajoutimage"/>
+                <br/>
+                <p:commandButton value="Sauvegarder" ajax="false" actionListener="#{Admin_ajout.upload()}" />
+
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
