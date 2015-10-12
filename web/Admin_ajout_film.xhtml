@@ -34,25 +34,25 @@ and open the template in the editor.
                         <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
                     </p:submenu>
                 </p:slideMenu>
-                <h:outputLabel for="Titre" value="Titre:" />
-                <p:inputText id="Titre"/>
+                <h:outputLabel for="title" value="Titre:" />
+                <p:inputText id="title" value="#{film.title}"/>
                 <br/>
-                <h:outputLabel for="Genre" value="Genre:"/>
-                <p:inputText id="Genre"/>
+                <h:outputLabel for="Gender" value="Genre:"/>
+                <p:inputText id="Gender" value="#{film.gender}"/>
                 <br/>
-                <h:outputLabel for="Duree" value="Durée:" />
-                <p:inputText id="Duree"/>
+                <h:outputLabel for="duration" value="Durée:" />
+                <p:inputText id="duration" value="#{film.duration}"/>
                 <br/>
-                <p:outputLabel for="Sortie" value="Date de sortie:" />
-                <p:calendar id="Sortie" value="#{admin_ajout.date}" showOn="button" />
+                <p:outputLabel for="dateSortie" value="Date de sortie:" />
+                <p:calendar id="dateSortie" value="#{film.dateSortie}" showOn="button" />
                 <br/>
-                <h:outputLabel for="Prix" value="Prix d'achat:" />
-                <p:inputText id="Prix"/>
+                <h:outputLabel for="prixAchat" value="Prix d'achat:" />
+                <p:inputText id="prixAchat" value="#{film.prixAchat}"/>
                 <br/>
-                <h:outputLabel for="ajoutimage" value="Ajouter une image:" />
-                <p:fileUpload value="#{admin_ajout.file}" mode="simple" skinSimple="true" id="ajoutimage"/>
+                <h:outputLabel for="file2" value="Ajouter une image:" />
+                <p:fileUpload value="#{film.file}" mode="simple" skinSimple="true" id="file2"/>
                 <br/>
-                <p:commandButton value="Sauvegarder" ajax="false" actionListener="#{Admin_ajout.upload()}" />
+                <p:commandButton value="Sauvegarder" ajax="false" actionListener="#{film.upload()}" />
 
             </h:form>
         </h:body>
