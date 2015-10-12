@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Visionner planning</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:outputStylesheet name="style.css"  />  
+            <p:dataTable var="car" value="#{dtBasicView.cars}">
+                <p:column headerText="Film">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+
+                <p:column headerText="Salle">
+                    <h:outputText value="#{car.year}" />
+                </p:column>
+
+                <p:column headerText="Date">
+                    <h:outputText value="#{car.brand}" />
+                </p:column>
+
+                <p:column headerText="Nom du projectionniste">
+                    <h:outputText value="#{car.color}" />
+                </p:column>
+            </p:dataTable>
+            <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo2"/>
+        </h:body>
+    </f:view>
+</html>
