@@ -1,5 +1,4 @@
-package org.primefaces.showcase.view;
-
+package org.primefaces.showcase.view.message;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,16 +34,22 @@ import org.primefaces.model.UploadedFile;
 @MultipartConfig
 public class Film {
 
-    private String title;
-    private String gender;
-    private int duration;
-    private Date dateSortie;
-    private double prixAchat;
+    private String title = null;
+    private String gender = null;
+    private int duration = 0;
+    private Date dateSortie = null;
+    private double prixAchat = 0.0;
     private boolean exploit;
-    private String img;
+    private String img = null;
+    private String dateSortie2 = null;
 
     private Date date;
     private UploadedFile file;
+
+    public void info2(String messagebis) {
+        FacesMessage test = new FacesMessage(FacesMessage.SEVERITY_INFO, messagebis, null);
+        FacesContext.getCurrentInstance().addMessage("Information", test);
+    }
 
     public String getTitle() {
         return title;
@@ -76,8 +81,16 @@ public class Film {
 
     public void setDateSortie(Date dateSortie) {
         this.dateSortie = dateSortie;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        dateSortie2 = formatter.format(dateSortie);
+
     }
 
+       // public void setTrueDateSortie() {
+    //  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    // dateSortie2 = formatter.format(dateSortie);
+    // 
+    // }
     public double getPrixAchat() {
         return prixAchat;
     }
@@ -143,7 +156,7 @@ public class Film {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/gphy_cine", "root", "");
             // connection réussie
             stmt = conn.createStatement();
-            stmt.executeUpdate("insert into Film (titre, genre, durée, date_sortie, prix_achat, en_exploitation, image)" + "values (" + title + "," + gender + "," + duration + "," + dateSortie + "," + prixAchat + ",0," + img + ")");
+            stmt.executeUpdate("insert into Film (titre, genre, durée, date_sortie, prix_achat, en_exploitation, image)" + "values (" + "'" + title + "'" + "," + "'" + gender + "'" + "," + duration + "," + "'" + dateSortie2 + "'" + "," + prixAchat + ",0," + "'" + img + "'" + ")");
 
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
@@ -171,18 +184,20 @@ public class Film {
             System.out.println(gender);
             System.out.println(duration);
             System.out.println(prixAchat);
-            System.out.println(dateSortie);
+            System.out.println(dateSortie2);
             System.out.println(img);
             ajoutFilm();
+            info2("Votre film a bien été sauvegardé");
         } else {
             System.out.println("je suis dans upload mais il y'a pas de fichiers");
             System.out.println(title);
             System.out.println(gender);
             System.out.println(duration);
             System.out.println(prixAchat);
-            System.out.println(dateSortie);
+            System.out.println(dateSortie2);
             System.out.println(img);
-            
+            ajoutFilm();
+
         }
     }
 

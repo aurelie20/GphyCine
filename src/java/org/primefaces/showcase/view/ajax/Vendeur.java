@@ -32,6 +32,14 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class Vendeur implements Serializable {
 
+    public ArrayList<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(ArrayList<String> imageList) {
+        this.imageList = imageList;
+    }
+
     private int number; //Nb de place tarif normal
     private int number2; //Nb de place tarif étudiant
     private int number3; //Nb de place tarif -16

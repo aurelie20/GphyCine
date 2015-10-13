@@ -34,24 +34,24 @@ and open the template in the editor.
                     </p:submenu>
                 </p:slideMenu>
 
-                <p:dataTable var="film" value="#{Financier_nbVentes.films}">
+                <p:dataTable var="f" value="#{financier_nbVentes.films}">
                     <p:column headerText="Titre">
-                        <h:outputText value="#{film.titreF}" />
+                        <h:outputText value="#{f.titreF}" />
                     </p:column>
 
                     <p:column headerText="places enfants">
-                        <h:outputText value="#{film.nb_pl_Enf}" />
+                        <h:outputText value="#{f.nb_pl_Enf}" />
                     </p:column>
 
                     <p:column headerText="places étudiants">
-                        <h:outputText value="#{film.nb_pl_Etu}" />
+                        <h:outputText value="#{f.nb_pl_Etu}" />
                     </p:column>
 
                     <p:column headerText="places adultes">
-                        <h:outputText value="#{film.nb_pl_Adult}" />
+                        <h:outputText value="#{f.nb_pl_Adult}" />
                     </p:column>
                     <p:column headerText="recette">
-                        <h:outputText value="#{film.prixTot}" />
+                        <h:outputText value="#{f.prixTot}" />
                     </p:column>
                 </p:dataTable>
             </h:form>

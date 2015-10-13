@@ -13,12 +13,12 @@ import javax.annotation.PostConstruct;
  */
 public class Recette_film {
 
-    private String titreF;
-    private double nb_pl_Etu;
-    private double nb_pl_Adult;
-    private double nb_pl_Enf;
-    private double prixTot;
-    private double prixF;
+    private String titreF = null;
+    private double nb_pl_Etu = 0.0;
+    private double nb_pl_Adult = 0.0;
+    private double nb_pl_Enf = 0.0;
+    private double prixTot = 0.0;
+    private double prixF = 0.0;
 
 
 
