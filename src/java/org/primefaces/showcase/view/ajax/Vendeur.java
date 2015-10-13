@@ -214,7 +214,6 @@ public class Vendeur implements Serializable {
             System.out.println("OK");
             titreF = new ArrayList<String>();
             while (rs.next()) {
-                //ArrayList<String> titreFilm = new ArrayList<String>();
                 titreF.add(rs.getString("titre"));
                 idFilm = rs.getInt("id_film");
             }

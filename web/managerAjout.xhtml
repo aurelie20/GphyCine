@@ -19,15 +19,15 @@ and open the template in the editor.
         </h:head>
         <h:body>
             <h:outputStylesheet name="style.css"  />  
-            <h:form>
+            <h:form id="formAjout">
                 <p:growl id="msgs" showDetail="true" />
 
-                <p:panel header="Ajouter au planning" style="margin-bottom:10px;">
+                <p:panel id="panel" header="Ajouter au planning" style="margin-bottom:10px;">
                     <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel for="film" value="Titre du film " />
-                        <p:selectOneMenu id="film" value="#{vendeur.choixFilm}" style="width:150px">
+                        <p:selectOneMenu id="film" value="#{manager.choixFilm}" style="width:150px">
                             <f:selectItem itemLabel="Titre" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{vendeur.titreF}" />
+                            <f:selectItems value="#{manager.titreF}" />
                         </p:selectOneMenu>
 
                         <p:outputLabel for="numSalle" value="Numéro de la salle " />
@@ -35,14 +35,26 @@ and open the template in the editor.
                             <f:selectItem itemLabel="Salle" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{manager.nbSalle}" />
                         </p:selectOneMenu>
+
+                        <p:outputLabel for="project" value="Projectionniste " />
+                        <p:selectOneMenu id="project" value="#{manager.nomProject}" style="width:150px">
+                            <f:selectItem itemLabel="Nom" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{manager.listNom}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="datetime" value="Date de projection" />
+                        <p:calendar id="datetime" value="#{manager.datePlanning}" pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:panelGrid>
 
                     <p:separator />
-
-                <!--<p:commandButton value="Submit" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />-->
+                    
+                    <p:commandButton value="Valider" update="msgs, film, numSalle, project, datetime" actionListener="#{manager.ajoutPlanning}" icon="ui-icon-check"/>
                 </p:panel>
-                <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo2"/>
-            </h:form>
+               
+                <p:button value="Retour" outcome="manager"/>
+             </h:form>
+                
+            <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo2"/>
         </h:body>
     </f:view>
 </html>
