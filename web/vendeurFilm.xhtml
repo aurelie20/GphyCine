@@ -16,6 +16,8 @@
 
         <h:body>
             <h:outputStylesheet name="style.css"  />
+            <br/>
+            <p:link value="Déconnexion" outcome="#{connexion.deconnect()}" class="deconnexion"/>
             <h:form class="formVendeur">
                 <br/>
                 <h:panelGrid columns="2" cellpadding="5" columnClasses="value" class="formVendeur">
@@ -31,7 +33,7 @@
                 <p:commandButton value="Valider" action="vendeur?faces-redirect=true" actionListener="#{vendeur.init}" ajax="false"/>                      
                 <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo"/>
             </h:form>
-            <p:link value="Déconnexion" outcome="index" class="deconnexion"/>
+            
         </h:body>
     </f:view>
 </html>

@@ -64,11 +64,11 @@
                     </h:panelGrid>
                    
                 </h:panelGrid>
-
+                <p:separator/>
                 <h:panelGrid columns="3" cellpadding="10" class="formVendeur">
-                    <p:commandButton value="Retour" action="vendeurFilm?faces-redirect=true" ajax="false"/>
+                    <p:commandButton value="Retour" action="vendeurFilm?faces-redirect=true" ajax="false" icon="ui-icon-arrowreturnthick-1-w"/>
 
-                    <p:commandButton value="Valider" actionListener="#{vendeur.insertRecette}">
+                    <p:commandButton value="Valider" actionListener="#{vendeur.insertRecette}" icon="ui-icon-check">
                         <p:confirm header="Confirmation" message="Voulez-vous valider cette vente ?" icon="ui-icon-alert" />
                     </p:commandButton>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

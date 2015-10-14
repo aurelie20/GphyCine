@@ -1,20 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Accueil</title>
-    </h:head>
-    <h:body>
-        Bienvenue au CinéGphy
-        <br />
-        <h:link outcome="vendeurFilm" value="Vendeur" />
-        <br />
-        <h:link outcome="financier" value="Financier" />
-        <br />
-        <h:link outcome="Admin_ajout_film" value="Administrateur" />
-        <br />
-        <h:link outcome="manager" value="Manager" />
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Accueil</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:outputStylesheet name="style.css"  />  
+            <h:form>
+                <p:graphicImage name="image/GphyCine.PNG" width="350" height="150" alt="logo" class="logo3"/>
+                <h:panelGrid class="connect" columns="2" cellpadding="5">   
+                    <h:panelGrid class="log" columns="2" cellpadding="5">
+                        <p:outputLabel value="Login " for="login" />
+                        <p:inputText id="login" value="#{connexion.login}" />
+                    </h:panelGrid>
+                    <h:panelGrid class="motdp" columns="2" cellpadding="5">
+                        <p:outputLabel value="Mot de passe " for="mdp"/>
+                        <p:password id="mdp" value="#{connexion.mdp}" />
+                    </h:panelGrid>
+                </h:panelGrid>
+                <br/>
+                <p:commandButton value="Connexion" action="#{connexion.getPage()}" ajax="false" class="centrer" icon="ui-icon-locked"/>
+                <br/>
+                <h:outputText value="#{connexion.error}" class="centrer" /> 
+
+
+            </h:form>
+
+        </h:body>
+    </f:view>
 </html>
 

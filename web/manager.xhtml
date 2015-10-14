@@ -22,7 +22,7 @@ and open the template in the editor.
             <h:form>
                 <p:growl id="messages" showDetail="false"/>
 
-                <p:menu>
+                <p:menu class="centrer">
                     <p:submenu label="Planning">
                         <p:menuitem value="Visionner" outcome="managerVisio" icon="ui-icon-document" />
                         <p:menuitem value="Ajouter" outcome="managerAjout" icon="ui-icon-plus"/>
@@ -30,7 +30,7 @@ and open the template in the editor.
                 </p:menu>
                 <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo2"/>
             </h:form>
-            <!--<p:link value="Déconnexion" outcome="index" class="deconnexion"/>-->
+            <p:link value="Déconnexion" outcome="#{connexion.deconnect()}" class="deconnexion"/>
         </h:body>
     </f:view>
 </html>

@@ -21,6 +21,14 @@ and open the template in the editor.
             <h:outputStylesheet name="style.css"  />  
             <h:form id="formAjout">
                 <p:growl id="msgs" showDetail="true" />
+                
+                <p:menubar>
+                    <p:submenu label="Planning" icon="ui-icon-calendar">
+                        <p:menuitem value="Visionner" outcome="managerVisio" icon="ui-icon-document" />
+                        <p:menuitem value="Ajouter" outcome="managerAjout" icon="ui-icon-plus"/>
+                    </p:submenu>
+                    <p:menuitem value="Deconnexion" outcome="#{connexion.deconnect()}" icon="ui-icon-close" /> 
+                </p:menubar>
 
                 <p:panel id="panel" header="Ajouter au planning" style="margin-bottom:10px;">
                     <h:panelGrid columns="2" cellpadding="5">
@@ -50,10 +58,7 @@ and open the template in the editor.
                     
                     <p:commandButton value="Valider" update="msgs, film, numSalle, project, datetime" actionListener="#{manager.ajoutPlanning}" icon="ui-icon-check"/>
                 </p:panel>
-               
-                <p:button value="Retour" outcome="manager"/>
              </h:form>
-                
             <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo2"/>
         </h:body>
     </f:view>

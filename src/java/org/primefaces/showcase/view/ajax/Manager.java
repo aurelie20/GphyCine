@@ -72,7 +72,7 @@ public class Manager {
             //Connexion reussie
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT s.id_salle, titre, date_heure, nom FROM salle s, planning pl, personnel pe, film f where f.id_film=pl.id_film and "
-                    + "s.id_salle=pl.id_salle and pe.id_personnel=pl.id_personnel");
+                    + "s.id_salle=pl.id_salle and pe.id_personnel=pl.id_personnel order by date_heure");
 
             System.out.println("OK");
             plan = new ArrayList<>();
@@ -197,7 +197,7 @@ public class Manager {
 
             //Connexion reussie
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT nom, id_personnel FROM personnel");
+            rs = stmt.executeQuery("SELECT nom, id_personnel FROM personnel where type='projectionniste'");
 
             System.out.println("OK PROJECT");
             listNom = new ArrayList<String>();

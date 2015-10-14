@@ -36,6 +36,18 @@ body .p{
 
 }
 
+.logo3
+{
+    margin-left: 40%; 
+
+}
+
+.centrer{
+    margin-right: auto;
+    margin-left: 45%;
+    text-align: center;
+}
+
 .film{
     text-align: center;
     font-size: 60px;
@@ -53,4 +65,17 @@ body .p{
 
 .deconnexion{
     margin-left: 5%;
+}
+
+.connect{
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.titreTab{
+    font-size: 50px;
+    margin-right: auto;
+    margin-left: 15%;
 }

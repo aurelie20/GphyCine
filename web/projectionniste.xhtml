@@ -20,16 +20,7 @@ and open the template in the editor.
         <h:body>
             <h:form>
                 <h:outputStylesheet name="style.css"  />  
-                <p:growl id="messages" showDetail="false"/>
-
-                <p:menubar>
-                    <p:submenu label="Planning" icon="ui-icon-calendar">
-                        <p:menuitem value="Visionner" outcome="managerVisio" icon="ui-icon-document" />
-                        <p:menuitem value="Ajouter" outcome="managerAjout" icon="ui-icon-plus"/>
-                    </p:submenu>
-                    <p:menuitem value="Deconnexion" outcome="#{connexion.deconnect()}" icon="ui-icon-close" />
-                </p:menubar>
-                
+                <p:link value="Déconnexion" outcome="#{connexion.deconnect()}" class="deconnexion"/>
                 <p:outputLabel value="Tableau des projections à venir" class="titreTab"/>
                 <p:dataTable var="pl" value="#{manager.plan}">
                     <p:column headerText="Film">
