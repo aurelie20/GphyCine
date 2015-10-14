@@ -15,7 +15,7 @@ and open the template in the editor.
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Recherchez</title>
+                <title>Changer les prix</title>
             </f:facet>
         </h:head>
         <h:body>
@@ -26,8 +26,8 @@ and open the template in the editor.
                 <p:slideMenu style="width:250px">
                     <p:submenu label="Recettes" icon="ui-icon-refresh">
                         <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
-                        <p:menuitem value="Recette par film" outcome="financier_recette_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
-                        <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                        <p:menuitem value="Rentabilité film exploitation" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                        <p:menuitem value="Rentabilité film" outcome="financier_benef_all" update="messages" icon="ui-icon-suitcase" />
                     </p:submenu>
                     <p:separator />
                     <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
@@ -35,49 +35,49 @@ and open the template in the editor.
                     </p:submenu>
                 </p:slideMenu>
 
-               <table style="background-color:'blue'" >
-                <tr>
-                    <td>Tarif</td>
-                    <td>Valeur actuelle</td>
-                    <td>Baisser/Aumenter le prix de</td>
-                    <td>Sauvegarder</td>
-                </tr>
-                <tr>
-                    <td>Normal</td>
-                    <td> <h:outputText id="prixn" value="#{financier.montant_norm} €" /> </td>
-                    <td> 
-                        <h:outputText id="output5" value="#{financier.number}"/>
+                <table style="background-color:'blue'" >
+                    <tr>
+                        <td>Tarif</td>
+                        <td>Valeur actuelle</td>
+                        <td>Baisser/Aumenter le prix de</td>
+                        <td>Sauvegarder</td>
+                    </tr>
+                    <tr>
+                        <td>Normal</td>
+                        <td> <h:outputText id="prixn" value="#{financier.montant_norm} €" /> </td>
+                        <td> 
+                            <h:outputText id="output5" value="#{financier.number}"/>
 
-                        <p:commandButton value="moins" actionListener="#{financier.decrement_norm}" update="output5" />
-                        <p:commandButton value="plus" actionListener="#{financier.increment_norm}" update="output5" /> 
-                    </td>
-                    <td>  <p:commandButton value="sauvegarder" actionListener="#{financier.setMontant_norm}" update="prixn, message" /> </td>
-                </tr>
-                <tr>
-                    <td>Etudiant</td>
-                    <td> <h:outputText id="prixe" value="#{financier.montant_etu} €" /> </td>
-                    <td> 
-                        <h:outputText id="output6" value="#{financier.number2}"/>
+                            <p:commandButton value="moins" actionListener="#{financier.decrement_norm}" update="output5" />
+                            <p:commandButton value="plus" actionListener="#{financier.increment_norm}" update="output5" /> 
+                        </td>
+                        <td>  <p:commandButton value="sauvegarder" actionListener="#{financier.setMontant_norm}" update="prixn, message" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Etudiant</td>
+                        <td> <h:outputText id="prixe" value="#{financier.montant_etu} €" /> </td>
+                        <td> 
+                            <h:outputText id="output6" value="#{financier.number2}"/>
 
-                        <p:commandButton value="moins" actionListener="#{financier.decrement_etu}" update="output6" />
-                        <p:commandButton value="plus" actionListener="#{financier.increment_etu}" update="output6" /> 
-                    </td>
-                    <td>  <p:commandButton value="sauvegarder" actionListener="#{financier.setMontant_etu}" update="prixe, message" /> </td>
-                </tr>
-                <tr>
-                    <td>-16 ans</td>
-                    <td> <h:outputText id="prixef" value="#{financier.montant_enf} €" /> </td>
-                    <td> 
-                        <h:outputText id="output7" value="#{financier.number3}"/>
+                            <p:commandButton value="moins" actionListener="#{financier.decrement_etu}" update="output6" />
+                            <p:commandButton value="plus" actionListener="#{financier.increment_etu}" update="output6" /> 
+                        </td>
+                        <td>  <p:commandButton value="sauvegarder" actionListener="#{financier.setMontant_etu}" update="prixe, message" /> </td>
+                    </tr>
+                    <tr>
+                        <td>-16 ans</td>
+                        <td> <h:outputText id="prixef" value="#{financier.montant_enf} €" /> </td>
+                        <td> 
+                            <h:outputText id="output7" value="#{financier.number3}"/>
 
-                        <p:commandButton value="moins" actionListener="#{financier.decrement_enf}" update="output7" />
-                        <p:commandButton value="plus" actionListener="#{financier.increment_enf}" update="output7" /> 
-                    </td>
-                    <td>  <p:commandButton value="sauvegarder"  actionListener="#{financier.setMontant_enf}" update="prixef,message"  /> </td>
-                </tr>
+                            <p:commandButton value="moins" actionListener="#{financier.decrement_enf}" update="output7" />
+                            <p:commandButton value="plus" actionListener="#{financier.increment_enf}" update="output7" /> 
+                        </td>
+                        <td>  <p:commandButton value="sauvegarder"  actionListener="#{financier.setMontant_enf}" update="prixef,message"  /> </td>
+                    </tr>
 
-            </table>
-        </h:form>
+                </table>
+            </h:form>
         </h:body>
     </f:view>
 </html>

@@ -4,13 +4,66 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Modifier un film</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form>
+
+                <p:growl id="message" showDetail="true"/>
+
+                <p:slideMenu style="width:250px">
+                    <p:submenu label="Film management" icon="ui-icon-refresh">
+                        <p:menuitem value="Ajouter un film" outcome="Admin_ajout_film" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Modifier un film" outcome="Admin_modif_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
+                    </p:submenu>
+                    <p:separator />
+                    <p:submenu label="Voir les ventes" icon="ui-icon-newwin"> 
+                        <p:menuitem value="Ventes billets" outcome="Admin_vue_vente" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette film exploitation" outcome="Admin_benefices" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette film" outcome="Admin_benef_all" update="messages" icon="ui-icon-cart" />
+                    </p:submenu>
+                </p:slideMenu>
+
+                <p:panel id="panel" header="Modifier un film" style="margin-bottom:10px;">
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <h:panelGrid columns="1" cellpadding="5">
+                            <h:outputLabel for="film" value="Selectionner le film a passer en exploitation" />
+                            <br/>
+                            <p:selectOneMenu id="film" value="#{admin_modif_Exploit.choixFilm}" style="width:150px">
+                                <f:selectItem itemLabel="Titre" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{admin_modif_Exploit.titreF}" />
+                            </p:selectOneMenu>
+                            <br/>
+                            <p:commandButton value="sauvegarder" actionListener="#{admin_modif_Exploit.enExploitFilm()}" ajax="false" update="message"/>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1" cellpadding="5">
+                            <h:outputLabel for="film2" value="Selectionner le film a ne plus mettre en exploitation" />
+                            <br/>
+                            <p:selectOneMenu id="film2" value="#{admin_modif_Exploit.choixFilm2}" style="width:150px">
+                                <f:selectItem itemLabel="Titre" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{admin_modif_Exploit.titreF2}" />
+                            </p:selectOneMenu>
+                            <br/>
+                            <p:commandButton value="sauvegarder" actionListener="#{admin_modif_Exploit.enExploitFilm2()}" ajax="false" update="message" />
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </h:body>
+    </f:view>
 </html>

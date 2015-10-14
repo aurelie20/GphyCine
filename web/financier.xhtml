@@ -10,30 +10,30 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <f:view contentType="text/html">
-    <h:head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
-        <h:outputStylesheet name="style.css"  /> 
-        <h:form>
-    <p:growl id="messages" showDetail="true"/>
- 
-    <p:slideMenu style="width:250px">
-        <p:submenu label="Recettes" icon="ui-icon-refresh">
-            <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
-            <p:menuitem value="Recette par film" outcome="financier_recette_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
-            <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
-        </p:submenu>
-        <p:separator />
-        <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
-            <p:menuitem value="Changer les prix" outcome="financier_changer_prix" update="messages" icon="ui-icon-suitcase" />
-        </p:submenu>
-    </p:slideMenu>
- 
-    </h:form>
-    </h:body>
-   </f:view>
+        <h:head>
+            <title>Financier</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        </h:head>
+        <h:body>
+            <h:outputStylesheet name="style.css"  /> 
+            <h:form>
+                <p:growl id="messages" showDetail="true"/>
+
+                <p:slideMenu style="width:250px">
+                    <p:submenu label="Recettes" icon="ui-icon-refresh">
+                        <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Rentabilité film exploitation" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                        <p:menuitem value="Rentabilité film" outcome="financier_benef_all" update="messages" icon="ui-icon-suitcase" />
+                    </p:submenu>
+                    <p:separator />
+                    <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
+                        <p:menuitem value="Changer les prix" outcome="financier_changer_prix" update="messages" icon="ui-icon-suitcase" />
+                    </p:submenu>
+                </p:slideMenu>
+
+            </h:form>
+        </h:body>
+    </f:view>
 </html>

@@ -15,7 +15,7 @@ and open the template in the editor.
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Recherchez</title>
+                <title>Ajouter un film</title>
             </f:facet>
         </h:head>
         <h:body>
@@ -23,6 +23,8 @@ and open the template in the editor.
                 
                 
                 
+
+
                 <p:slideMenu style="width:250px">
                     <p:submenu label="Film management" icon="ui-icon-refresh">
                         <p:menuitem value="Ajouter un film" outcome="Admin_ajout_film" update="messages" icon="ui-icon-cart" />
@@ -30,9 +32,9 @@ and open the template in the editor.
                     </p:submenu>
                     <p:separator />
                     <p:submenu label="Voir les ventes" icon="ui-icon-newwin"> 
-                        <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
-                        <p:menuitem value="Recette par film" outcome="financier_recette_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
-                        <p:menuitem value="Benefices" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                        <p:menuitem value="Ventes billets" outcome="Admin_vue_vente" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette film exploitation" outcome="Admin_benefices" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette film" outcome="Admin_benef_all" update="messages" icon="ui-icon-cart" />
                     </p:submenu>
                 </p:slideMenu>
                 
