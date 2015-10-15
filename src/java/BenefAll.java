@@ -1,4 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+/**
+ *
+ * @author William
+ */
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,30 +27,16 @@ import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.HorizontalBarChartModel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author William
- */
 @ManagedBean
 @ViewScoped
 public class BenefAll implements Serializable{
- 
 
+    private HorizontalBarChartModel horizontalBarModel2;
 
-
-
-    private HorizontalBarChartModel horizontalBarModel;
-
-    private List<BeneficeFilm> tab_film = null;
+    private List<BeneficeFilm> tab_film2 = null;
     
 
-    public void return_film_exploit() {
+    public void return_film_exploit2() {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -51,15 +46,15 @@ public class BenefAll implements Serializable{
             conn = DriverManager.getConnection("jdbc:mysql://localhost/gphy_cine", "root", "");
             // connection réussie
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("Select titre, prix_achat, sum(montant_total) as tot from film join recette using (id_film) group by titre order by tot desc");
-            tab_film = new ArrayList<>();
+            rs = stmt.executeQuery("Select titre, prix_achat, sum(montant_total) as tot from film join recette using (id_film)  group by titre order by tot desc");
+            tab_film2 = new ArrayList<>();
             while (rs.next()) {
-                BeneficeFilm b = new BeneficeFilm();
-                b.setTitre(rs.getString("titre"));
-                b.setMontantTot(rs.getDouble("tot"));
-                b.setPrixF(rs.getDouble("prix_achat"));
-                b.setBenef(rs.getDouble("tot") - rs.getDouble("prix_achat"));
-                tab_film.add(b);
+                BeneficeFilm b2 = new BeneficeFilm();
+                b2.setTitre(rs.getString("titre"));
+                b2.setMontantTot(rs.getDouble("tot"));
+                b2.setPrixF(rs.getDouble("prix_achat"));
+                b2.setBenef(rs.getDouble("tot") - rs.getDouble("prix_achat"));
+                tab_film2.add(b2);
             }
             System.out.println("j'ai fais la requête");
 
@@ -77,55 +72,55 @@ public class BenefAll implements Serializable{
     }
     
 @PostConstruct
-    public void init() {
+    public void init2() {
+       
         try {
-            createBarModels();
+            createBarModels2();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CalculBenefice.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BenefAll.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
-    public HorizontalBarChartModel getHorizontalBarModel() {
-        return horizontalBarModel;
+    public HorizontalBarChartModel getHorizontalBarModel2() {
+        return horizontalBarModel2;
     }
 
-    private void createBarModels() throws ClassNotFoundException {
-        createHorizontalBarModel();
+    private void createBarModels2() throws ClassNotFoundException {
+        createHorizontalBarModel2();
     }
 
-    private void createHorizontalBarModel() throws ClassNotFoundException {
-        return_film_exploit();
-        horizontalBarModel = new HorizontalBarChartModel();
+    private void createHorizontalBarModel2() throws ClassNotFoundException {
+        return_film_exploit2();
+        horizontalBarModel2 = new HorizontalBarChartModel();
         System.out.println("je passe ici");
 
-        BarChartModel model = new BarChartModel();
-        ChartSeries benef = new ChartSeries();
+        BarChartModel model2 = new BarChartModel();
+        ChartSeries benef2 = new ChartSeries();
 
-        for (int j = 0; j < tab_film.size(); j++) {
-            benef.setLabel("Bénéfices");
-            benef.set(tab_film.get(j).getTitre(), tab_film.get(j).getBenef());
+        for (int j = 0; j < tab_film2.size(); j++) {
+            benef2.setLabel("Bénéfices");
+            benef2.set(tab_film2.get(j).getTitre(), tab_film2.get(j).getBenef());
         }
 
-        horizontalBarModel.addSeries(benef);
+        horizontalBarModel2.addSeries(benef2);
 
-        horizontalBarModel.setTitle("Rentabilité des films en exploitation");
-        horizontalBarModel.setLegendPosition("e");
-        horizontalBarModel.setStacked(true);
+        horizontalBarModel2.setTitle("Rentabilité de tous les films");
+        horizontalBarModel2.setLegendPosition("e");
+        horizontalBarModel2.setStacked(true);
 
-        Axis xAxis = horizontalBarModel.getAxis(AxisType.X);
+        Axis xAxis = horizontalBarModel2.getAxis(AxisType.X);
         xAxis.setLabel("prix en euros");
         xAxis.setMin(-100000);
         xAxis.setMax(1000000);
 
-        Axis yAxis = horizontalBarModel.getAxis(AxisType.Y);
+        Axis yAxis = horizontalBarModel2.getAxis(AxisType.Y);
         yAxis.setLabel("Films");
     }
-    public void prepaHisto() throws ClassNotFoundException{
-        return_film_exploit();
-        createHorizontalBarModel();
+    public void prepaHisto2() throws ClassNotFoundException{
+        return_film_exploit2();
+        createHorizontalBarModel2();
         System.out.println("je passe dans la première classe"); 
     }
     
 }
-    
-
