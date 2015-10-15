@@ -135,7 +135,7 @@ public class Connexion implements Serializable {
                 case "Administrateur":
                     return "Admin_ajout_film?faces-redirect=true";
                 case "financier":
-                    return "financier?faces-redirect=true";
+                    return "financier_nb_ventes?faces-redirect=true";
                 case "Manager projectionniste":
                     return "managerVisio?faces-redirect=true";
                 case "projectionniste":

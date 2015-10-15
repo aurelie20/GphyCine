@@ -21,23 +21,23 @@ and open the template in the editor.
         <h:body>
             <h:form>
                 <p:growl id="message" showDetail="true"/>
-
-                <p:slideMenu style="width:250px">
+                <h:outputStylesheet name="style.css"  /> 
+                <p:menubar>
                     <p:submenu label="Film management" icon="ui-icon-refresh">
                         <p:menuitem value="Ajouter un film" outcome="Admin_ajout_film" update="messages" icon="ui-icon-cart" />
                         <p:menuitem value="Modifier un film" outcome="Admin_modif_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
                     </p:submenu>
-                    <p:separator />
                     <p:submenu label="Voir les ventes" icon="ui-icon-newwin"> 
                         <p:menuitem value="Ventes billets" outcome="Admin_vue_vente" update="messages" icon="ui-icon-cart" />
-                        <p:menuitem value="Recette film exploitation" outcome="Admin_benefices" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette exploitation" outcome="Admin_benefices" update="messages" icon="ui-icon-cart" />
                         <p:menuitem value="Recette film" outcome="Admin_benef_all" update="messages" icon="ui-icon-cart" />
                     </p:submenu>
-                </p:slideMenu>
+                    <p:menuitem value="Deconnexion" outcome="#{connexion.deconnect()}" icon="ui-icon-close" /> 
+                </p:menubar>
 
-
+                <br/>
                 <p:chart type="bar" model="#{benefAll.horizontalBarModel2}" style="height:300px" id="benef_horizon2"/>
-
+                <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo"/>
             </h:form>
 
         </h:body>

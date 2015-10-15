@@ -15,12 +15,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.faces.bean.ManagedBean;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ViewScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+import org.primefaces.showcase.view.ajax.Manager;
 
 @ManagedBean
 @ViewScoped
@@ -34,9 +35,8 @@ public class Financier implements Serializable {
     private double number2 = 0.0;
     private double number3 = 0.0;
 
-  
     public void info(String message) {
-        FacesMessage test = new FacesMessage(FacesMessage.SEVERITY_INFO, message,  null);
+        FacesMessage test = new FacesMessage(FacesMessage.SEVERITY_INFO, message, null);
         FacesContext.getCurrentInstance().addMessage("Information", test);
     }
 
@@ -103,7 +103,7 @@ public class Financier implements Serializable {
         }
     }
 
-    public void return_prix_norm() throws ClassNotFoundException {
+    public void return_prix_norm() {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -115,11 +115,13 @@ public class Financier implements Serializable {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("Select montant from prix_billet where type_client='Normaux'");
             rs.next();
+            System.out.println("connect montant norm ok");
             double montant_n = rs.getDouble("montant");
             montant_norm = montant_n;
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
-
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (rs != null) {
                 System.out.print("");
@@ -128,12 +130,12 @@ public class Financier implements Serializable {
         }
     }
 
-    public double getMontant_norm() throws ClassNotFoundException {
+    public double getMontant_norm() {
         return_prix_norm();
         return montant_norm;
     }
 
-    public void return_prix_etu() throws ClassNotFoundException {
+    public void return_prix_etu() {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -147,9 +149,11 @@ public class Financier implements Serializable {
             rs.next();
             double montant_n = rs.getDouble("montant");
             montant_etu = montant_n;
+            System.out.println("connect montant etu ok");
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
-
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (rs != null) {
                 System.out.print("");
@@ -159,7 +163,7 @@ public class Financier implements Serializable {
         }
     }
 
-    public double getMontant_etu() throws ClassNotFoundException {
+    public double getMontant_etu() {
         return_prix_etu();
         return montant_etu;
     }
@@ -168,7 +172,7 @@ public class Financier implements Serializable {
         this.montant_etu = montant_etu;
     }
 
-    public void return_prix_enf() throws ClassNotFoundException {
+    public void return_prix_enf() {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -182,9 +186,11 @@ public class Financier implements Serializable {
             rs.next();
             double montant_n = rs.getDouble("montant");
             montant_enf = montant_n;
+            System.out.println("connect montant enf ok");
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
-
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (rs != null) {
                 System.out.print("");
@@ -194,12 +200,12 @@ public class Financier implements Serializable {
         }
     }
 
-    public double getMontant_enf() throws ClassNotFoundException {
+    public double getMontant_enf() {
         return_prix_enf();
         return montant_enf;
     }
 
-    public void sauvegarde_norm() throws ClassNotFoundException {
+    public void sauvegarde_norm() {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -213,6 +219,8 @@ public class Financier implements Serializable {
 
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             System.out.print("");
             System.out.println("pas de rep");
@@ -220,17 +228,17 @@ public class Financier implements Serializable {
         }
     }
 
-    public void setMontant_norm() throws ClassNotFoundException {
+    public void setMontant_norm() {
         System.out.println("ICI");
         this.montant_norm = montant_norm + number;
         System.out.println(montant_norm);
         sauvegarde_norm();
         System.out.println(montant_norm);
-        info("Sauvegarde prise en compte"); 
+        info("Sauvegarde prise en compte");
         // info();
     }
 
-    public void sauvegarde_etu() throws ClassNotFoundException {
+    public void sauvegarde_etu() {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -244,6 +252,8 @@ public class Financier implements Serializable {
 
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             System.out.print("");
             System.out.println("pas de rep");
@@ -251,16 +261,16 @@ public class Financier implements Serializable {
         }
     }
 
-    public void setMontant_etu() throws ClassNotFoundException {
+    public void setMontant_etu() {
         System.out.println("ICI");
         this.montant_etu = montant_etu + number2;
         System.out.println(montant_etu);
         sauvegarde_etu();
-        info("Sauvegarde prise en compte"); 
+        info("Sauvegarde prise en compte");
         // info();
     }
 
-    public void sauvegarde_enf() throws ClassNotFoundException {
+    public void sauvegarde_enf() {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -274,6 +284,8 @@ public class Financier implements Serializable {
 
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             System.out.print("");
             System.out.println("pas de rep");
@@ -281,7 +293,7 @@ public class Financier implements Serializable {
         }
     }
 
-    public void setMontant_enf() throws ClassNotFoundException {
+    public void setMontant_enf() {
         System.out.println("ICI");
         this.montant_enf = montant_enf + number3;
         sauvegarde_enf();

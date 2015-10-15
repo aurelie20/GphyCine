@@ -30,33 +30,34 @@ and open the template in the editor.
                     <p:menuitem value="Deconnexion" outcome="#{connexion.deconnect()}" icon="ui-icon-close" /> 
                 </p:menubar>
 
-                <p:panel id="panel" header="Ajouter au planning" style="margin-bottom:10px;">
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <p:outputLabel for="film" value="Titre du film " />
-                        <p:selectOneMenu id="film" value="#{manager.choixFilm}" style="width:150px">
-                            <f:selectItem itemLabel="Titre" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{manager.titreF}" />
+                <br/>
+                <p:panel id="panel" header="Ajouter au planning" style="margin-bottom:10px;" class="centre">
+                    <h:panelGrid columns="2" cellpadding="5" class="centre">
+                        <p:outputLabel for="film" value="Titre du film " class="centre"/>
+                        <p:selectOneMenu id="film" value="#{manager.choixFilm}" style="width:150px" class="centre">
+                            <f:selectItem itemLabel="Titre" itemValue="" noSelectionOption="true" class="centre"/>
+                            <f:selectItems value="#{manager.titreF}" class="centre"/>
                         </p:selectOneMenu>
 
-                        <p:outputLabel for="numSalle" value="Numéro de la salle " />
-                        <p:selectOneMenu id="numSalle" value="#{manager.nSalle}" style="width:150px">
-                            <f:selectItem itemLabel="Salle" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{manager.nbSalle}" />
+                        <p:outputLabel for="numSalle" value="Numéro de la salle " class="centre"/>
+                        <p:selectOneMenu id="numSalle" value="#{manager.nSalle}" style="width:150px" class="centre">
+                            <f:selectItem itemLabel="Salle" itemValue="" noSelectionOption="true" class="centre"/>
+                            <f:selectItems value="#{manager.nbSalle}" class="centre"/>
                         </p:selectOneMenu>
 
-                        <p:outputLabel for="project" value="Projectionniste " />
-                        <p:selectOneMenu id="project" value="#{manager.nomProject}" style="width:150px">
-                            <f:selectItem itemLabel="Nom" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{manager.listNom}" />
+                        <p:outputLabel for="project" value="Projectionniste " class="centre"/>
+                        <p:selectOneMenu id="project" value="#{manager.nomProject}" style="width:150px" class="centre">
+                            <f:selectItem itemLabel="Nom" itemValue="" noSelectionOption="true" class="centre"/>
+                            <f:selectItems value="#{manager.listNom}" class="centre"/>
                         </p:selectOneMenu>
 
-                        <p:outputLabel for="datetime" value="Date de projection" />
-                        <p:calendar id="datetime" value="#{manager.datePlanning}" pattern="MM/dd/yyyy HH:mm:ss" />
+                        <p:outputLabel for="datetime" value="Date de projection" class="centre"/>
+                        <p:calendar id="datetime" value="#{manager.datePlanning}" pattern="MM/dd/yyyy HH:mm:ss" class="centre"/>
                     </h:panelGrid>
 
                     <p:separator />
                     
-                    <p:commandButton value="Valider" update="msgs, film, numSalle, project, datetime" actionListener="#{manager.ajoutPlanning}" icon="ui-icon-check"/>
+                    <p:commandButton value="Valider" update="msgs, film, numSalle, project, datetime" actionListener="#{manager.ajoutPlanning}" icon="ui-icon-check" class="centre"/>
                 </p:panel>
              </h:form>
             <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo2"/>

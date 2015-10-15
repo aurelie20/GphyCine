@@ -21,22 +21,23 @@ and open the template in the editor.
         <h:body>
             <h:form>
                 <p:growl id="message" showDetail="true"/>
+                <h:outputStylesheet name="style.css"  /> 
 
-                <p:slideMenu style="width:250px">
+                <p:menubar>
                     <p:submenu label="Recettes" icon="ui-icon-refresh">
                         <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
-                        <p:menuitem value="Rentabilité film exploitation" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                        <p:menuitem value="Rentabilité exploitation" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
                         <p:menuitem value="Rentabilité film" outcome="financier_benef_all" update="messages" icon="ui-icon-suitcase" />
                     </p:submenu>
-                    <p:separator />
                     <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
                         <p:menuitem value="Changer les prix" outcome="financier_changer_prix" update="messages" icon="ui-icon-suitcase" />
                     </p:submenu>
-                </p:slideMenu>
+                    <p:menuitem value="Deconnexion" outcome="#{connexion.deconnect()}" icon="ui-icon-close" /> 
+                </p:menubar>
 
-
+                <br/>
                 <p:chart type="bar" model="#{benefAll.horizontalBarModel2}" style="height:300px" id="benef_horizon"/>
-
+                <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo"/>
             </h:form>
 
         </h:body>

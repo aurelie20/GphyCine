@@ -30,22 +30,23 @@ and open the template in the editor.
                     <p:menuitem value="Deconnexion" outcome="#{connexion.deconnect()}" icon="ui-icon-close" />
                 </p:menubar>
                 
+                <br/>
                 <p:outputLabel value="Tableau des projections à venir" class="titreTab"/>
-                <p:dataTable var="pl" value="#{manager.plan}">
-                    <p:column headerText="Film">
-                        <h:outputText value="#{pl.titre}" />
+                <p:dataTable var="pl" value="#{manager.plan}" class="centre">
+                    <p:column headerText="Film" class="centre">
+                        <h:outputText value="#{pl.titre}" class="centre"/>
                     </p:column>
 
-                    <p:column headerText="Salle">
-                        <h:outputText value="#{pl.idSalle}" />
+                    <p:column headerText="Salle" class="centre">
+                        <h:outputText value="#{pl.idSalle}" class="centre"/>
                     </p:column>
 
-                    <p:column headerText="Date">
-                        <h:outputText value="#{pl.dateP}" />
+                    <p:column headerText="Date" class="centre">
+                        <h:outputText value="#{pl.dateP}" class="centre"/>
                     </p:column>
 
-                    <p:column headerText="Nom du projectionniste">
-                        <h:outputText value="#{pl.nomPerso}" />
+                    <p:column headerText="Nom du projectionniste" class="centre">
+                        <h:outputText value="#{pl.nomPerso}" class="centre"/>
                     </p:column>
                 </p:dataTable>
 

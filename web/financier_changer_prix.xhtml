@@ -23,60 +23,59 @@ and open the template in the editor.
             <h:form>
                 <p:growl id="message" showDetail="true"/>
 
-                <p:slideMenu style="width:250px">
+                <p:menubar>
                     <p:submenu label="Recettes" icon="ui-icon-refresh">
                         <p:menuitem value="Ventes billets" outcome="financier_nb_ventes" update="messages" icon="ui-icon-cart" />
-                        <p:menuitem value="Rentabilité film exploitation" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
+                        <p:menuitem value="Rentabilité exploitation" outcome="financier_benefices" update="messages" icon="ui-icon-suitcase" />
                         <p:menuitem value="Rentabilité film" outcome="financier_benef_all" update="messages" icon="ui-icon-suitcase" />
                     </p:submenu>
-                    <p:separator />
                     <p:submenu label="Changer les prix" icon="ui-icon-newwin"> 
                         <p:menuitem value="Changer les prix" outcome="financier_changer_prix" update="messages" icon="ui-icon-suitcase" />
                     </p:submenu>
-                </p:slideMenu>
+                    <p:menuitem value="Deconnexion" outcome="#{connexion.deconnect()}" icon="ui-icon-close" /> 
+                </p:menubar>
+                <br/>
 
-                <table style="background-color:'blue'" >
-                    <tr>
-                        <td>Tarif</td>
-                        <td>Valeur actuelle</td>
-                        <td>Baisser/Aumenter le prix de</td>
-                        <td>Sauvegarder</td>
-                    </tr>
-                    <tr>
-                        <td>Normal</td>
-                        <td> <h:outputText id="prixn" value="#{financier.montant_norm} €" /> </td>
-                        <td> 
-                            <h:outputText id="output5" value="#{financier.number}"/>
+                <h:panelGrid columns="4" cellpadding="5" class="centre">
+                    <h:panelGrid columns="1" cellpadding="10" class="centre">
+                        <p:outputLabel value="Tarif" class="centre"/>  
+                        <p:outputLabel value="Normal" class="centre"/> 
+                        <p:outputLabel value="Etudiant" class="centre"/> 
+                        <p:outputLabel value="-16 ans" class="centre"/> 
+                    </h:panelGrid>
 
-                            <p:commandButton value="moins" actionListener="#{financier.decrement_norm}" update="output5" />
-                            <p:commandButton value="plus" actionListener="#{financier.increment_norm}" update="output5" /> 
-                        </td>
-                        <td>  <p:commandButton value="sauvegarder" actionListener="#{financier.setMontant_norm}" update="prixn, message" /> </td>
-                    </tr>
-                    <tr>
-                        <td>Etudiant</td>
-                        <td> <h:outputText id="prixe" value="#{financier.montant_etu} €" /> </td>
-                        <td> 
-                            <h:outputText id="output6" value="#{financier.number2}"/>
+                    <h:panelGrid columns="1" cellpadding="5" class="centre">
+                        <p:outputLabel value="Valeur actuelle" class="centre"/>
+                        <h:outputText id="prixn" value="#{financier.montant_norm} €" class="montant2"/>
+                        <h:outputText id="prixe" value="#{financier.montant_etu} €" class="montant2"/>
+                        <h:outputText id="prixef" value="#{financier.montant_enf} €" class="montant2"/>
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="1" cellpadding="5" class="centre">
+                        <p:outputLabel value="Baisser/Augmenter le prix" class="centre"/>
+                        <h:panelGrid columns="3" cellpadding="3" class="centre">
 
-                            <p:commandButton value="moins" actionListener="#{financier.decrement_etu}" update="output6" />
-                            <p:commandButton value="plus" actionListener="#{financier.increment_etu}" update="output6" /> 
-                        </td>
-                        <td>  <p:commandButton value="sauvegarder" actionListener="#{financier.setMontant_etu}" update="prixe, message" /> </td>
-                    </tr>
-                    <tr>
-                        <td>-16 ans</td>
-                        <td> <h:outputText id="prixef" value="#{financier.montant_enf} €" /> </td>
-                        <td> 
-                            <h:outputText id="output7" value="#{financier.number3}"/>
+                            <h:outputText id="output5" value="#{financier.number}" class="montant2"/>
+                            <p:commandButton value="moins" actionListener="#{financier.decrement_norm}" update="output5" class="centre"/>
+                            <p:commandButton value="plus" actionListener="#{financier.increment_norm}" update="output5" class="centre"/>
 
-                            <p:commandButton value="moins" actionListener="#{financier.decrement_enf}" update="output7" />
-                            <p:commandButton value="plus" actionListener="#{financier.increment_enf}" update="output7" /> 
-                        </td>
-                        <td>  <p:commandButton value="sauvegarder"  actionListener="#{financier.setMontant_enf}" update="prixef,message"  /> </td>
-                    </tr>
+                            <h:outputText id="output6" value="#{financier.number2}" class="montant2"/>
+                            <p:commandButton value="moins" actionListener="#{financier.decrement_etu}" update="output6" class="centre"/>
+                            <p:commandButton value="plus" actionListener="#{financier.increment_etu}" update="output6" class="centre"/> 
 
-                </table>
+                            <h:outputText id="output7" value="#{financier.number3}" class="montant2"/>
+                            <p:commandButton value="moins" actionListener="#{financier.decrement_enf}" update="output7" class="centre" />
+                            <p:commandButton value="plus" actionListener="#{financier.increment_enf}" update="output7" class="centre"/> 
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" cellpadding="5" class="centre">
+                        <p:outputLabel value="sauvegarder" class="centre"/>
+                        <p:commandButton value="sauvegarder" actionListener="#{financier.setMontant_norm}" update="prixn, message" class="centre"/>
+                        <p:commandButton value="sauvegarder" actionListener="#{financier.setMontant_etu}" update="prixe, message" class="centre"/>
+                        <p:commandButton value="sauvegarder"  actionListener="#{financier.setMontant_enf}" update="prixef,message"  class="centre"/>
+                    </h:panelGrid>
+                </h:panelGrid>
+                <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo"/>
             </h:form>
         </h:body>
     </f:view>

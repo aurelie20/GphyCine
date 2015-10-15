@@ -20,57 +20,47 @@ and open the template in the editor.
         </h:head>
         <h:body>
             <h:form>
-                
-                
-                
 
+                <h:outputStylesheet name="style.css"  /> 
 
-                <p:slideMenu style="width:250px">
+                <p:menubar>
                     <p:submenu label="Film management" icon="ui-icon-refresh">
                         <p:menuitem value="Ajouter un film" outcome="Admin_ajout_film" update="messages" icon="ui-icon-cart" />
                         <p:menuitem value="Modifier un film" outcome="Admin_modif_film" update="messages" icon=" ui-icon-arrowthick-1-ne" />
                     </p:submenu>
-                    <p:separator />
                     <p:submenu label="Voir les ventes" icon="ui-icon-newwin"> 
                         <p:menuitem value="Ventes billets" outcome="Admin_vue_vente" update="messages" icon="ui-icon-cart" />
-                        <p:menuitem value="Recette film exploitation" outcome="Admin_benefices" update="messages" icon="ui-icon-cart" />
+                        <p:menuitem value="Recette exploitation" outcome="Admin_benefices" update="messages" icon="ui-icon-cart" />
                         <p:menuitem value="Recette film" outcome="Admin_benef_all" update="messages" icon="ui-icon-cart" />
                     </p:submenu>
-                </p:slideMenu>
-                
+                    <p:menuitem value="Deconnexion" outcome="#{connexion.deconnect()}" icon="ui-icon-close" /> 
+                </p:menubar>
+                <br/>
                 <p:growl id="message2" showDetail="true" sticky="true"/>
-                <h:outputLabel for="title" value="Titre:" />
-                <p:inputText id="title" value="#{film.title}"/>
-                <br/>
-                <h:outputLabel for="Gender" value="Genre:"/>
-                <p:inputText id="Gender" value="#{film.gender}"/>
-                <br/>
-                <h:outputLabel for="duration" value="Durée:" />
-                <p:inputText id="duration" value="#{film.duration}"/>
-                <br/>
-                <!--!
-                <p:outputLabel for="dateSortie" value="Date de sortie:" />
-                <p:calendar id="dateSortie" value="#{film.dateSortie}" showOn="button" >
-                <f:convertDateTime pattern="MM/dd/yyyy" />
-                </p:calendar>
-                -->
-                <h:outputText value="Button:" />
-                <p:calendar id="button" value="#{film.dateSortie}" showOn="button" />
-                <br/>
-                <h:outputLabel for="prixAchat" value="Prix d'achat:" />
-                <p:inputText id="prixAchat" value="#{film.prixAchat}"/>
-                <br/>
-                <!--!
-                <h:outputLabel for="file2" value="Ajouter une image:" />
-                <p:fileUpload value="#{film.file}" mode="simple" skinSimple="true" id="file2"/>
-                <br/> 
-                -->
-                <h:outputLabel for="image" value="Chemin d'accès à l'image: " />
-                <p:inputText id="image" value="#{film.img}"/>
-                <br/>
-                
-                <p:commandButton value="sauvegarder" actionListener="#{film.upload()}" update="message2, title, Gender, duration, button, prixAchat, image" ajax="false" />
 
+                <h:panelGrid columns="1" cellpadding="3" class="centre">
+                    <h:outputLabel for="title" value="Titre : " class="centre" />
+                    <p:inputText id="title" value="#{film.title}" class="centre"/>
+                    <br/>
+                    <h:outputLabel for="Gender" value="Genre : " class="centre"/>
+                    <p:inputText id="Gender" value="#{film.gender}" class="centre"/>
+                    <br/>
+                    <h:outputLabel for="duration" value="Durée : " class="centre" />
+                    <p:inputText id="duration" value="#{film.duration}" class="centre"/>
+                    <br/>
+                    <h:outputText value="Date : "  class="centre"/>
+                    <p:calendar id="button" value="#{film.dateSortie}" showOn="button" class="centre" />
+                    <br/>
+                    <h:outputLabel for="prixAchat" value="Prix d'achat : "  class="centre"/>
+                    <p:inputText id="prixAchat" value="#{film.prixAchat}" class="centre"/>
+                    <br/>
+                    <h:outputLabel for="image" value="Chemin d'accès à l'image : " class="centre"/>
+                    <p:inputText id="image" value="#{film.img}" class="centre"/>
+                    <br/>
+
+                    <p:commandButton value="sauvegarder" actionListener="#{film.upload()}" update="message2, title, Gender, duration, button, prixAchat, image" ajax="false" class="centre" />
+                </h:panelGrid>
+                <p:graphicImage name="image/GphyCine.PNG" width="250" height="100" alt="logo" class="logo"/>
             </h:form>
         </h:body>
     </f:view>

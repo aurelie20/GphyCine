@@ -1,4 +1,5 @@
 package org.primefaces.showcase.view.message;
+
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -86,7 +87,7 @@ public class Film {
 
     }
 
-       // public void setTrueDateSortie() {
+    // public void setTrueDateSortie() {
     //  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     // dateSortie2 = formatter.format(dateSortie);
     // 
@@ -157,6 +158,13 @@ public class Film {
             // connection réussie
             stmt = conn.createStatement();
             stmt.executeUpdate("insert into Film (titre, genre, durée, date_sortie, prix_achat, en_exploitation, image)" + "values (" + "'" + title + "'" + "," + "'" + gender + "'" + "," + duration + "," + "'" + dateSortie2 + "'" + "," + prixAchat + ",0," + "'" + img + "'" + ")");
+            info2("Votre film a bien été sauvegardé");
+            title = null;
+            gender = null;
+            duration = 0;
+            dateSortie = null;
+            prixAchat = 0.0;
+            img = null;
 
         } catch (SQLException ex) {
             System.out.println("SQLException:" + ex.getMessage());
